@@ -17,7 +17,10 @@ class TaskCDUD:
         return result.scalars().first()
 
     async def create(
-        db: AsyncSession, create_schema: TaskCreateDB, commit: bool = True
+        self,
+        db: AsyncSession,
+        create_schema: TaskCreateDB,
+        commit: bool = True,
     ) -> Task:
         data = create_schema.model_dump(exclude_unset=True)
         stmt = insert(Task).values(**data).returning(Task)
