@@ -29,7 +29,7 @@ class Task(Base):
     created_at: Mapped[datetime] = mapped_column(
         DateTime(timezone=True), server_default=func.now()
     )
-    description: Mapped[str] = mapped_column(Text)
+    description: Mapped[str] = mapped_column(Text, default="")
     status: Mapped[ENUM] = mapped_column(
         ENUM(TaskStatus, create_type=False),
     )
