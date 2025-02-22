@@ -16,6 +16,7 @@ class Task(Base):
     ## Attrs:
         - id: int - идентификатор
         - uid: UUID -  идентификатор
+        - name: str - название задачи
         - created_at: datetime - дата и время
             создания ззадачи
         - status: TaskStatus - статус задачи
@@ -26,6 +27,7 @@ class Task(Base):
     uid: Mapped[uuid.UUID] = mapped_column(
         UUID, unique=True, index=True, default=uuid.uuid4
     )
+    name: str 
     created_at: Mapped[datetime] = mapped_column(
         DateTime(timezone=True), server_default=func.now()
     )

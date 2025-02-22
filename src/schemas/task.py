@@ -1,5 +1,5 @@
 from datetime import datetime
-from typing import List
+from typing import List, Optional
 from uuid import UUID
 
 from pydantic import BaseModel
@@ -9,7 +9,8 @@ from schemas.paginate import PaginatedResponseBase
 
 
 class TaskBase(BaseModel):
-    text: str
+    name: str
+    drscription: Optional[str] = None
 
     class Config:
         from_attributes = True
