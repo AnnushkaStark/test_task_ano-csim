@@ -10,7 +10,9 @@ from crud.task import task_crud
 from models import Task
 
 
-async def proccess_task(db: AsyncSession, task_uid: UUID) -> Optional[Task]:
+async def proccess_task(
+    self, db: AsyncSession, task_uid: UUID
+) -> Optional[Task]:
     if found_task := await task_crud.get_by_uid(db=db, uid=task_uid):
         progressed_task = await task_crud.update_status(
             db=db, obj=found_task, status=TaskStatus.IN_PROGRESS
