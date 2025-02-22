@@ -1,5 +1,5 @@
 import sys
-from typing import Callable, Generator
+from typing import Generator
 
 import pytest_asyncio
 from httpx import AsyncClient
