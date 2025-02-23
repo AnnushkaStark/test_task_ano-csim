@@ -10,6 +10,6 @@ async def create_task(task: Task) -> None:
         channel = await connection.channel()
         routing_key = rabbit_settings.RABBIT_QUEUE
         await channel.default_exchange.publish(
-            aio_pika.Message(body=task.name.encode(), message_id=task.uid),
+            aio_pika.Message(body=str(task.id).encode()),
             routing_key=routing_key,
         )

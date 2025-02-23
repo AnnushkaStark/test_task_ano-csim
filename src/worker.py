@@ -10,7 +10,7 @@ from utilities.task import proccess_task
 
 async def process_message(message: aio_pika.Message) -> None:
     async with AsyncSession as session:
-        await proccess_task(db=session, task_uid=message.message_id)
+        await proccess_task(db=session, task_id=int(message.body))
 
 
 async def main() -> None:

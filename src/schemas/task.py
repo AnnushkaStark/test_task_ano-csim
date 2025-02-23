@@ -10,7 +10,7 @@ from schemas.paginate import PaginatedResponseBase
 
 class TaskBase(BaseModel):
     name: str
-    drscription: Optional[str] = None
+    description: Optional[str] = None
 
     class Config:
         from_attributes = True

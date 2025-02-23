@@ -16,6 +16,11 @@ class TaskCDUD:
         result = await db.execute(statement)
         return result.scalars().first()
 
+    async def get_by_id(self, db: AsyncSession, obj_id: int) -> Optional[Task]:
+        statement = select(Task).where(Task.id == obj_id)
+        result = await db.execute(statement)
+        return result.scalars().first()
+
     async def create(
         self,
         db: AsyncSession,
