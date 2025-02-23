@@ -10,7 +10,7 @@ from models import Task
 from schemas.task import TaskCreateDB
 
 
-class TaskCDUD:
+class TaskCRUD:
     async def get_by_uid(self, db: AsyncSession, uid: UUID) -> Optional[Task]:
         statement = select(Task).where(Task.uid == uid)
         result = await db.execute(statement)
@@ -46,4 +46,4 @@ class TaskCDUD:
         return obj
 
 
-task_crud = TaskCDUD()
+task_crud = TaskCRUD()

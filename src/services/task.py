@@ -4,7 +4,7 @@ from constants.task import TaskStatus
 from crud.task import task_crud
 from models import Task
 from schemas.task import TaskCreate, TaskCreateDB
-from utilities import producer
+from utilities.producer import create_task
 
 
 async def create(db: AsyncSession, create_data: TaskCreate) -> Task:
@@ -13,7 +13,7 @@ async def create(db: AsyncSession, create_data: TaskCreate) -> Task:
     )
     try:
         task = await task_crud.create(db=db, create_schema=create_schema)
-        producer.create_task(task=task)
+        await create_task(task=task)
     except Exception as e:
         await db.rollback()
         raise Exception(str(e))

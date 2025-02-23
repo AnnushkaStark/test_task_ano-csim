@@ -16,15 +16,6 @@ services:
     networks:
       - app-network
 
-  worker:
-    build: .
-    command: python worker.py
-    depends_on:
-      - rabbitmq
-      - db
-    networks:
-      - app-network
-
   db:
     image: postgres:13
     container_name: postgres
