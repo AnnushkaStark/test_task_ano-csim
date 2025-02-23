@@ -25,7 +25,11 @@ async def read_tasks(
 
 @router.get("/{task_uid}/", response_model=TaskResponse)
 async def read_task(task_uid: UUID, db: AsyncSession = Depends(get_async_db)):
-    return await task_crud.get_by_uid(db=db, uid=task_uid)
+    if found_task := await task_crud.get_by_uid(db=db, uid=task_uid):
+        return found_task
+    raise HTTPException(
+        status_code=status.HTTP_404_NOT_FOUND, detail="Not found"
+    )
 
 
 @router.post("/", status_code=status.HTTP_201_CREATED)

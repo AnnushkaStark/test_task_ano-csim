@@ -15,14 +15,13 @@ class DBSettings(BaseSetting):
 
 class RabbitSettings(BaseSetting):
     RABBIT_HOST: str
-
     RABBIT_USER: str
     RABBIT_PASSWORD: str
     RABBIT_QUEUE: str
 
     @property
     def url(self) -> str:
-        return f"amqp://{self.RABBIT_USER}:{self.RABBIT_PASSWORD}@{self.RABBIT_HOST}/"
+        return f"amqp://{self.RABBIT_USER}:{self.RABBIT_PASSWORD}@{self.RABBIT_HOST}/" # noqa: E501
 
 
 rabbit_settings = RabbitSettings()
