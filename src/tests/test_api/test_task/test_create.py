@@ -16,7 +16,7 @@ class TestCreate:
         mocker: MockerFixture,
     ) -> None:
         data = TaskCreate(name="mytesttask", description="testdescription")
-        mock_producer = mocker.patch("utilities.publisher.create_task")
+        mock_producer = mocker.patch("utilities.producer.create_task")
         response = await http_client.post(
             ROOT_ENDPOINT, json=data.model_dump(exclude_unset=True)
         )

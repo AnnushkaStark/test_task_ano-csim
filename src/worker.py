@@ -25,12 +25,8 @@ async def main() -> None:
             async for message in queue_iter:
                 async with message.process():
                     await process_message(message=message)
-                    if queue.name in message.body.decode():
-                        break
 
 
 if __name__ == "__main__":
-    try:
-        asyncio.run(main())
-    except Exception:
-        pass
+    loop = asyncio.get_event_loop()
+    loop.run_until_complete(main())
